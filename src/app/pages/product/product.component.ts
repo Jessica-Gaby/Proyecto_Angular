@@ -30,18 +30,21 @@ export class ProductComponent implements OnInit {
     });
   }
   createProduct(){
-    const data={
+    const data = {
+      title:'Libros',
+      price:50,
+      description:'Utiles escolares / Christian Aguirre',
+      categoryId:1
+    }
+    const url ='https://api.escuelajs.co/api/v1/products'
+    this.httpClient.post(url, data)
+    .subscribe((response) => { console.log(response); });
+  }
+}
+    /*const data={
       title : 'Libros',
       price: 15,
       description: 'utiles escolares /Jessica Ayala',
       categoryId: 1,
-    }
+    }*/
 
-
-    const url = 'http://api.escuelajs.co/api/v1/products';
-     this.httpClient.post(url, data).subscribe
-    (response => {console.log(response);
-    });
-  }
-
-}
