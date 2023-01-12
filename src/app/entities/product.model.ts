@@ -6,4 +6,5 @@ export interface productModel{
     price:number;
     description: string;
     category: CategoryModel;
+    images:string;
 }

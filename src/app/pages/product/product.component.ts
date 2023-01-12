@@ -14,9 +14,13 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     //this.getProducts();
-    this.getproduct();
+    //this.getproduct();
+    //this.createProduct();
+    //this.updateProduct();
+    //this.deleteProduct();
 
   }
+ 
 
   getProducts(){
     const response = this.httpClient.get('http://api.escuelajs.co/api/v1/products').subscribe
@@ -31,20 +35,36 @@ export class ProductComponent implements OnInit {
   }
   createProduct(){
     const data = {
-      title:'Libros',
+      title:'sombras',
       price:50,
-      description:'Utiles escolares / Christian Aguirre',
+      description:'Maquillajes / Jessica Ayala',
+      images:["https://api.lorem.space/image/shoes?w=640&h=480&r=1883"],
       categoryId:1
     }
     const url ='https://api.escuelajs.co/api/v1/products'
-    this.httpClient.post(url, data)
-    .subscribe((response) => { console.log(response); });
-  }
+    this.httpClient.post(url, data).subscribe
+    (response => { console.log(response);
+  });
 }
-    /*const data={
-      title : 'Libros',
-      price: 15,
-      description: 'utiles escolares /Jessica Ayala',
-      categoryId: 1,
-    }*/
 
+updateProduct() {
+  const data={
+    title:'camisetas',
+    price: 25,
+    description: 'camisetas deportivas/ Jessica Ayala',
+  }
+  const url ='https://api.escuelajs.co/api/v1/products/277';
+    this.httpClient.put(url, data).subscribe
+    (response => { console.log(response);
+  }); 
+}
+
+deleteProduct() {
+  const url ='https://api.escuelajs.co/api/v1/products/277';
+    this.httpClient.delete(url).subscribe
+    (response => { console.log(response);
+  }); 
+}
+
+
+}

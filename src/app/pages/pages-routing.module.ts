@@ -29,6 +29,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     AuthModule,
+  ],
+  exports:[
+    RouterModule,
   ]
 })
 export class PagesRoutingModule { }
