@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
     });
   }
   getproduct(){
-    const url = 'http://api.escuelajs.co/api/v1/products/20';
+    const url = 'http://api.escuelajs.co/api/v1/products/17';
     const response = this.httpClient.get(url).subscribe
     (response => {console.log(response);
     });
@@ -53,14 +53,14 @@ updateProduct() {
     price: 25,
     description: 'camisetas deportivas/ Jessica Ayala',
   }
-  const url ='https://api.escuelajs.co/api/v1/products/277';
+  const url ='https://api.escuelajs.co/api/v1/products/27';
     this.httpClient.put(url, data).subscribe
     (response => { console.log(response);
   }); 
 }
 
 deleteProduct() {
-  const url ='https://api.escuelajs.co/api/v1/products/277';
+  const url ='https://api.escuelajs.co/api/v1/products/27';
     this.httpClient.delete(url).subscribe
     (response => { console.log(response);
   }); 
