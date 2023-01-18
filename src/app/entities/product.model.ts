@@ -1,10 +1,18 @@
 import{CategoryModel} from "./category.model";
 
-export interface productModel{
+export interface ProductModel{
     id:number;
     title: string;
     price:number;
     description: string;
+    images:string [];
     category: CategoryModel;
-    images:string;
+}
+
+export interface CreateproductDto extends Omit <ProductModel, 'id' | 'category'>{
+categoryId:number;
+}
+
+export interface UpdateproductDto extends Partial<ProductModel>{
+categoryId?:number; //el signo ? hace que el atributo se ha opcional
 }

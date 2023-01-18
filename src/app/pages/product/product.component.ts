@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import { ProductHttpService } from 'src/app/services/producthttp.service';
 
 @Component({
   selector: 'app-product',
@@ -8,7 +9,7 @@ import { HttpClient} from '@angular/common/http';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient ) {
+  constructor(private productHttpService: ProductHttpService  ) {
     
    }
 
@@ -23,27 +24,28 @@ export class ProductComponent implements OnInit {
  
 
   getProducts(){
-    const response = this.httpClient.get('http://api.escuelajs.co/api/v1/products').subscribe
-    (response =>{ console.log(response);
+    this.productHttpService.getAll().subscribe
+    (response =>{ 
+      console.log(response);
     });
   }
   getproduct(){
-    const url = 'http://api.escuelajs.co/api/v1/products/17';
-    const response = this.httpClient.get(url).subscribe
-    (response => {console.log(response);
+    this.productHttpService.getOne(2).subscribe
+    (response => {
+      console.log(response);
     });
   }
   createProduct(){
-    const data = {
+    const data={
       title:'sombras',
       price:50,
       description:'Maquillajes / Jessica Ayala',
       images:["https://api.lorem.space/image/shoes?w=640&h=480&r=1883"],
       categoryId:1
     }
-    const url ='https://api.escuelajs.co/api/v1/products'
-    this.httpClient.post(url, data).subscribe
-    (response => { console.log(response);
+    this.productHttpService.store(data).subscribe
+    (response => { 
+      console.log(response);
   });
 }
 
@@ -53,16 +55,16 @@ updateProduct() {
     price: 25,
     description: 'camisetas deportivas/ Jessica Ayala',
   }
-  const url ='https://api.escuelajs.co/api/v1/products/27';
-    this.httpClient.put(url, data).subscribe
-    (response => { console.log(response);
+    this.productHttpService.update(1, data).subscribe
+    (response => { 
+      console.log(response);
   }); 
 }
 
 deleteProduct() {
-  const url ='https://api.escuelajs.co/api/v1/products/27';
-    this.httpClient.delete(url).subscribe
-    (response => { console.log(response);
+    this.productHttpService.destroy(3).subscribe
+    (response => { 
+      console.log(response);
   }); 
 }
 
