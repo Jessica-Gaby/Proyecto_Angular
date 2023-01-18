@@ -1,3 +1,4 @@
+import { ProductModule } from "../pages/product/product.module";
 import{CategoryModel} from "./category.model";
 
 export interface ProductModel{
