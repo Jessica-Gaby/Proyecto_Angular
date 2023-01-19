@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { ProductHttpService } from 'src/app/services/producthttp.service';
+import { ProductModel, UpdateproductDto } from 'src/app/entities/product.model';
 
 @Component({
   selector: 'app-product',
@@ -8,24 +9,26 @@ import { ProductHttpService } from 'src/app/services/producthttp.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
+    products:ProductModel[]=[];
+    selectedProduct :UpdateproductDto = {};
   constructor(private productHttpService: ProductHttpService  ) {
     
    }
 
   ngOnInit(): void {
-    //this.getProducts();
-    //this.getproduct();
-    //this.createProduct();
-    //this.updateProduct();
-    //this.deleteProduct();
+    this.getProducts();
+    this.getproduct();
+    this.createProduct();
+    this.updateProduct();
+    this.deleteProduct();
 
   }
  
 
   getProducts(){
     this.productHttpService.getAll().subscribe
-    (response =>{ 
+    (response =>{
+      this.products= response;
       console.log(response);
     });
   }
@@ -38,7 +41,7 @@ export class ProductComponent implements OnInit {
   createProduct(){
     const data={
       title:'sombras',
-      price:50,
+      price: 50,
       description:'Maquillajes / Jessica Ayala',
       images:["https://api.lorem.space/image/shoes?w=640&h=480&r=1883"],
       categoryId:1
@@ -47,6 +50,10 @@ export class ProductComponent implements OnInit {
     (response => { 
       console.log(response);
   });
+}
+
+editProduct(product: ProductModel){
+   this.selectedProduct = product;
 }
 
 updateProduct() {
@@ -62,8 +69,9 @@ updateProduct() {
 }
 
 deleteProduct() {
-    this.productHttpService.destroy(3).subscribe
+    this.productHttpService.destroy(1).subscribe
     (response => { 
+      //this.products = this.products.filter(product => product.id != id);
       console.log(response);
   }); 
 }

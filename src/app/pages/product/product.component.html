@@ -1,2 +1,44 @@
-<p>product works!</p>
-<h1>Jessica Ayala</h1>
+<div class="card">
+    <div class="card-header">
+        Producto
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+          <label for="title" class="form-label">Producto:</label>
+          <input type="text" id="title"  [value]="selectedProduct.title"  class="form-control" >
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Eliminar</th>
+                <th scope="col">Actualizar</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="" *ngFor = "let product of products">
+                <td>{{product.title}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.category}}</td>
+                <td><img src="{{product.images}}" alt="" width="150px" height="200px"></td>
+                <td> <button (click)="deleteProduct()">Eliminar</button></td>
+                <td> <button (click)="editProduct(product)">Actualizar</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
