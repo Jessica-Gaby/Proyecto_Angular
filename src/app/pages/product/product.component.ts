@@ -12,18 +12,21 @@ export class ProductComponent implements OnInit {
     products:ProductModel[]=[];
     selectedProduct :UpdateproductDto = {};
   constructor(private productHttpService: ProductHttpService  ) {
-    
+    //this.initProduct
    }
 
   ngOnInit(): void {
     this.getProducts();
-    this.getproduct();
-    this.createProduct();
-    this.updateProduct();
-    this.deleteProduct();
+    //this.getproduct();
+    //this.createProduct();
+    //this.updateProduct();
+    //this.deleteProduct();
 
   }
  
+  initProduct(){
+    this.selectedProduct = {title:'category', price: 0, description:''}
+  }
 
   getProducts(){
     this.productHttpService.getAll().subscribe
@@ -56,7 +59,7 @@ editProduct(product: ProductModel){
    this.selectedProduct = product;
 }
 
-updateProduct() {
+updateProduct(id:ProductModel ['id']) {
   const data={
     title:'camisetas',
     price: 25,
@@ -68,10 +71,10 @@ updateProduct() {
   }); 
 }
 
-deleteProduct() {
-    this.productHttpService.destroy(1).subscribe
+deleteProduct(id: ProductModel['id']) {
+    this.productHttpService.destroy(id).subscribe
     (response => { 
-      //this.products = this.products.filter(product => product.id != id);
+      this.products = this.products.filter(product => product.id != id);
       console.log(response);
   }); 
 }

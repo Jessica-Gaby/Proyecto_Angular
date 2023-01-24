@@ -7,9 +7,17 @@
           <label for="title" class="form-label">Producto:</label>
           <input type="text" id="title"  [value]="selectedProduct.title"  class="form-control" >
         </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Precio:</label>
+            <input type="text" id="title"  [value]="selectedProduct.price"  class="form-control" >
+          </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Descripcion:</label>
+            <input type="text" id="title"  [value]="selectedProduct.description"  class="form-control" >
+          </div>
     </div>
-    <div class="card-footer text-muted">
-        Footer
+    <div >
+        <button > Actualizar</button>    
     </div>
 </div>
 
@@ -34,8 +42,8 @@
                 <td>{{product.description}}</td>
                 <td>{{product.category}}</td>
                 <td><img src="{{product.images}}" alt="" width="150px" height="200px"></td>
-                <td> <button (click)="deleteProduct()">Eliminar</button></td>
-                <td> <button (click)="editProduct(product)">Actualizar</button></td>
+                <td> <button (click)="deleteProduct(product.id)">Eliminar</button></td>
+                <td> <button (click)="editProduct(product)">Editar</button></td>
 
             </tr>
         </tbody>
